@@ -1,0 +1,21 @@
+services:
+  mariadb:
+    image: mariadb:11
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-rootpassword}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-happy_paw3}
+      MARIADB_USER: ${MARIADB_USER:-happyuser}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD:-happypassword}
+    ports:
+      - "${MARIADB_PORT:-2000}:3306"
+    volumes:
+      - happy_paw3_data:/var/lib/mysql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  happy_paw3_data:

@@ -1,0 +1,17 @@
+[project]
+name = "happy-paw3"
+version = "0.1.0"
+description = "Pet hotel application with FastAPI, NiceGUI, FastMCP, and MariaDB"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "fastmcp>=2.0",
+    "nicegui>=2.0",
+    "pymysql>=1.1.1",
+    "python-dotenv>=1.0",
+    "uvicorn[standard]>=0.30",
+]
+
+[tool.ruff]
+line-length = 100
